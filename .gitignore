@@ -1,0 +1,8 @@
+# Este repositório guarda apenas releases (anexadas via GitHub Releases).
+# Nada de binários soltos, código-fonte ou segredos no versionamento.
+*.exe
+*.pfx
+*.p12
+*.keystore
+*.lic
+appsettings*.json
