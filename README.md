@@ -1,42 +1,41 @@
-# Orizon InfoSistemas — Releases
+# Orizon SGC — Releases
 
-Repositório **público**, contendo **somente as releases** (instaladores) do sistema Orizon InfoSistemas.
-**Não há código-fonte aqui** — o código vive em repositório privado separado.
+Este repositório contém os instaladores oficiais do **Orizon SGC**.
 
-## Por que este repositório existe
+## Download
 
-O atualizador automático (OTA) do sistema consulta a GitHub Releases API:
+Acesse a [página de releases](../../releases) para baixar o instalador mais recente.
 
-```
-GET https://api.github.com/repos/danielcls/orizon-infosistemas-releases/releases/latest
-```
+### Versão atual: v1.2.0
 
-Como este repositório é **público**, qualquer instalação do sistema baixa as atualizações
-**sem precisar de token** — e nenhum segredo é distribuído nas máquinas dos clientes.
-Manter as releases aqui permite que o repositório de **código permaneça privado** sem quebrar o OTA.
+| Arquivo | Tamanho | Descrição |
+|---|---|---|
+| `OrizonSGC-Setup-v1.2.0.exe` | ~273 MB | Instalador completo (Retaguarda + Frente de Caixa + Mapa de Mesas + Pré-Venda + Firebird 5) |
 
-## O que cada release contém
+## Módulos incluídos no instalador
 
-Cada release publica:
+O instalador oferece três topologias:
 
-- **`OrizonSGC-Setup-v{Major}.{Minor}.{Build}.exe`** — instalador (asset que o OTA baixa)
-- **`SHA256SUMS.txt`** — hash SHA-256 do instalador (verificação de integridade)
-- Notas da versão no corpo da release
+| Topologia | Módulos instalados |
+|---|---|
+| **Completo** | Retaguarda + Frente de Caixa + Mapa de Mesas + Pré-Venda + Firebird 5 + WAHA (opcional) |
+| **Servidor** | Retaguarda + Firebird 5 + WAHA (opcional) |
+| **Terminal** | Frente de Caixa + Mapa de Mesas + Pré-Venda (sem banco local) |
 
-A tag segue o formato `v{Major}.{Minor}.{Build}` (ex.: `v1.0.2`).
+## Requisitos
 
-## Como publicar uma nova versão
+- Windows 10 / 11 (64-bit)
+- 4 GB RAM mínimo (8 GB recomendado)
+- 2 GB de espaço em disco
 
-No repositório de código, com o instalador já gerado em `dist\`:
+## Histórico de versões
 
-```powershell
-.\tools\publish-release.ps1 -Version "1.0.2" -Notes "Correções e melhorias"
-```
+| Versão | Data | Destaques |
+|---|---|---|
+| **v1.2.0** | 05/06/2026 | Frente de Caixa — controles Orizon em todos os forms; propagação automática de tema entre módulos (shared JSON + named pipe em tempo real); correção de tema em forms da Retaguarda |
+| v1.1.0 | 05/06/2026 | Frente de Caixa completo (balcão/mesas/delivery/pendura); LicenseManager; APK Android garçom; WhatsApp WAHA; homologação SEFAZ-BA real |
+| v1.0.0 | 04/06/2026 | Lançamento inicial — sistema completo convergido Orizon SGC + InfoSistemas PDV |
 
-O script compila o instalador (se necessário), calcula o SHA-256 e cria a release
-neste repositório com o asset anexado. Requer `gh` (GitHub CLI) autenticado.
+## Suporte
 
-## Segurança
-
-- Este repositório **nunca** deve receber código-fonte, `appsettings` com segredos, certificados ou chaves.
-- O token do repositório **privado** de código **nunca** deve ser colocado no `appsettings` dos clientes.
+Para reportar problemas ou solicitar suporte, entre em contato com o responsável pelo sistema.
